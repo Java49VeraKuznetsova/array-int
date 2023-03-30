@@ -24,6 +24,13 @@ public class MyArraysInt {
 		//(less than 0 or greater than array.length-1
 		// using the standard method System.arraycopy
 		
+		/* V.R. May be following will be a little bit better:
+		   boolean b=index >=0 && index < array.length;
+		 * To analyze the boolean variable is more effecive 
+		 * to calculate it.
+		*/
+
+		
 	    int arrayNew [] = new int [array.length-1];
 	    if (index >=0 && index < array.length) {
 	    System.arraycopy(array, 0, arrayNew, 0, index);
@@ -47,16 +54,49 @@ public class MyArraysInt {
 			
 		return (index >=0 && index <=array.length) ? arrayNew : array;
 			
-		
-				
-			
-			
-			
-			
-			
 		}
+	
+	public static int[] insertNumberSorted(int[] array, int num) {
+		int index = Arrays.binarySearch(array, num);
+		if (index < 0) {
+			index = -index -1;
+		}
+		return insertNumber(array, index, num);
+	}
 	
     
 	}
+/* Yuri's code
 
+public class MyArraysInt {
+	public static int [] addNumber(int[] array, int num) {
+		
+		int [] result = Arrays.copyOf(array, array.length + 1);
+		result[array.length] = num;
+		return result;
+	}
+	public static int[] removeNumber(int [] array, int index) {
+		
+		int [] result = array;
+		if (index > -1 && index < array.length) {
+			result = new int[array.length - 1];
+			System.arraycopy(array, 0, result, 0, index);
+			System.arraycopy(array, index + 1, result, index, result.length - index);
+		}
+		return result;
+	}
+	public static int[] insertNumber(int [] array, int index, int num) {
+		
+		int [] result = array;
+		if (index > -1 && index <= array.length) {
+			result = new int[array.length + 1];
+			System.arraycopy(array, 0, result, 0, index);
+			System.arraycopy(array, index, result, index + 1, array.length - index);
+			result[index] = num;
+		}
+		return result;
+	}
+	
+}
+*/
 
